@@ -75,6 +75,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> ea5093dc2f10ff89534983c5265afc5b1fefe706
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
@@ -86,7 +91,12 @@
         <!--			<artifactId>spring-boot-devtools</artifactId>-->
         <!--			<optional>true</optional>-->
         <!--		</dependency>-->
+<<<<<<< HEAD
         
+=======
+
+
+>>>>>>> ea5093dc2f10ff89534983c5265afc5b1fefe706
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
