@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>MyBlog</title>
+  <link rel="stylesheet" href="../static/layui/css/layui.css">
+  <link rel="stylesheet" href="../static/css/index/index.css">
+</head>
+<script src="../static/vue/vue.js"></script>
+<script src="../static/layui/layui.all.js"></script>
+<style>
+
+</style>
+
+<body>
+  <div class="layui_top">
+    <div class="layui_top_01">
+      <ul class="">
+        <li class="layui_top_02"><a href="">首页</a></li>
+        <li class="layui_top_02 "><a href="">博客</a></li>
+        <li class="layui_top_02"><a href="">模块</a></li>
+        <li class="layui_top_02"><a href="">模块</a></li>
+      </ul>
+      <div class="layui-input-block layui_top_03">
+        <input type="text" name="title" required lay-verify="required" placeholder="请输入标题" autocomplete="off"
+          class="layui-input layui_top_04">
+        <input class="layui-btn layui-btn-normal layui_top_05" type="button" value="搜索">
+        <input class="layui-btn layui-btn-normal layui_top_05" type="button" value="写文章">
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="myblog_lb">
+      <div class="layui-carousel myblog_lb_01" id="myblog_lb_01">
+        <div class="xxxx" carousel-item>
+          <div><img class="myblog_lb_01_01" src="../static/imgs/indexImgs/index_lb_1.jpg" alt=""></div>
+          <div><img class="myblog_lb_01_01" src="../static/imgs/indexImgs/index_lb_2.jpg" alt=""></div>
+          <div><img class="myblog_lb_01_01" src="../static/imgs/indexImgs/index_lb_3.jpg" alt=""></div>
+        </div>
+      </div>
+      <div>
+        <ul>
+          <li>
+            <div>
+              <!-- 第一层标题头像 -->
+              <div>
+                <!--头像-->
+                <div class="">
+                  <img class="myblog_tx" src="../static/imgs/loginImgs/tx.jpg" alt="">
+                </div>
+                <!-- 标题 -->
+                <div>
+                  <a href=""></a>
+                </div>
+              </div>
+              <!-- 第二层正文 -->
+              <div>
+                <div>
+                  正文
+                </div>
+              </div>
+              <!-- 第三层时间标签 -->
+              <div>
+                <span>
+                  <i>
+                    <!-- 样式 -->
+                  </i>
+                  2019-09-09
+                </span>
+                <span>
+                  <i></i>
+                  java基础
+                </span>
+                <span>
+                  <i></i>
+                  浏览
+                </span>
+                <span>
+                  <i></i>
+                  点赞
+                </span>
+              </div>
+            </div>
+            <hr>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+
+  <script>
+    layui.use(['layer', 'form', 'jquery', 'element'], function () {
+      var layer = layui.layer,
+        $ = layui.$,
+        form = layui.form, //form表单
+        upload = layui.upload, //图片文件上传
+        element = layui.element,
+        carousel = layui.carousel
+      //轮播图
+      carousel.render({
+        elem: '#myblog_lb_01',
+        width: '100%', //设置容器宽度
+        arrow: 'always', //始终显示箭头
+        anim: 'fade' //切换动画方式
+      });
+    });
+  </script>
+</body>
+
+</html>

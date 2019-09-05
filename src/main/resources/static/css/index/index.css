@@ -1,0 +1,52 @@
+.layui_top {
+  width: 1000px;
+  height: 70px;
+  margin: 25px auto;
+  border-bottom: 1px solid #1E9FFF;
+}
+
+.layui_top_01 {
+  width: 1000px;
+  height: 100px;
+}
+
+.layui_top_02 {
+  font-size: 20px;
+  margin: 0 20px;
+  float: left;
+}
+
+.layui_top_03 {
+  width: 500px;
+  height: 70px;
+  display: inline-block;
+  float: left;
+}
+
+.layui_top_04 {
+  width: 300px;
+  display: inline-block;
+  float: left;
+}
+
+.layui_top_05 {
+  margin-left: 10px;
+}
+
+.myblog_lb_01{
+    margin: 0 auto;
+}
+.myblog_lb_01_01{
+    width: 100%;
+    height: 100%;
+}
+.myblog_lb{
+    width: 700px;
+    height: 500px;
+    margin: 0 auto;
+    /*border: 1px solid red;*/
+}
+.myblog_tx{
+    width: 33px;
+    height: 33px;
+}
