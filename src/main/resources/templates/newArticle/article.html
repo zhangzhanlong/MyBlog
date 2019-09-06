@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>写文章</title>
+  <link rel="stylesheet" href="/src/main/resources/static/layui/css/layui.css" />
+  <link rel="stylesheet" href="/src/main/resources/static/css/article/article.css">
+</head>
+<script src="/src/main/resources/static/vue/vue.js"></script>
+<script src="/src/main/resources/static/layui/layui.all.js"></script>
+<script type="text/javascript" src="/src/main/resources/static/js/wangEditor.js"></script>
+
+<body>
+  <div class="layui_top">
+    <div class="layui_top_01">
+      <ul class="">
+        <li class="layui_top_02"><a href="">首页</a></li>
+        <li class="layui_top_02 "><a href="">博客</a></li>
+        <li class="layui_top_02"><a href="">模块</a></li>
+        <li class="layui_top_02"><a href="">模块</a></li>
+      </ul>
+      <div class="layui-input-block layui_top_03">
+        <input class="layui-btn layui-btn-normal layui_top_05" type="button" value="搜索" />
+        <button class="layui-btn layui-btn-normal layui_top_05" onclick="javascript:xwz()">写文章</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="wangEditor3">
+    <div class="wangEditor3_top_01"></div>
+    <div id="wangEditor3_01" class="toolbar_01"></div>
+    <div class="toolbar_03">
+      <!-- 两个div之间的距离 -->
+    </div>
+    <div>
+      <textarea autofocus placeholder="输入标题..." cols="10" spellcheck="false" maxlength="80" rows="1"
+        class="textarea_01"></textarea>
+    </div>
+    <div id="wangEditor3_02" class="toolbar_02">
+      <!-- 正文 -->
+    </div>
+  </div>
+
+  <!-- 注意， 只需要引用 JS，无需引用任何 CSS ！！！-->
+  <script type="text/javascript">
+    var E = window.wangEditor
+    var editor1 = new E('#wangEditor3_01', '#wangEditor3_02') // 两个参数也可以传入 elem 对象，class 选择器
+    editor1.create()
+  </script>
+
+
+
+
+  <script>
+    layui.use(['layer', 'form', 'jquery', 'element'], function () {
+      var layer = layui.layer,
+        $ = layui.$,
+        form = layui.form, //form表单
+        upload = layui.upload, //图片文件上传
+        element = layui.element,
+        carousel = layui.carousel
+      //轮播图
+      carousel.render({
+        elem: '#myblog_lb_01',
+        width: '100%', //设置容器宽度
+        arrow: 'always', //始终显示箭头
+        anim: 'fade' //切换动画方式
+      })
+    })
+  </script>
+</body>
+
+</html>

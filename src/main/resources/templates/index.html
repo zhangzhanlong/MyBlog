@@ -2,18 +2,16 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <title>MyBlog</title>
-  <link rel="stylesheet" href="../static/layui/css/layui.css">
-  <link rel="stylesheet" href="../static/css/index/index.css">
+  <link rel="stylesheet" href="../static/layui/css/layui.css" />
+  <link rel="stylesheet" href="../static/css/index/index.css" />
 </head>
 <script src="../static/vue/vue.js"></script>
 <script src="../static/layui/layui.all.js"></script>
-<style>
-
-</style>
+<style></style>
 
 <body>
   <div class="layui_top">
@@ -26,9 +24,9 @@
       </ul>
       <div class="layui-input-block layui_top_03">
         <input type="text" name="title" required lay-verify="required" placeholder="请输入标题" autocomplete="off"
-          class="layui-input layui_top_04">
-        <input class="layui-btn layui-btn-normal layui_top_05" type="button" value="搜索">
-        <input class="layui-btn layui-btn-normal layui_top_05" type="button" value="写文章">
+          class="layui-input layui_top_04" />
+        <input class="layui-btn layui-btn-normal layui_top_05" type="button" value="搜索" />
+        <button class="layui-btn layui-btn-normal layui_top_05" onclick="javascript:xwz()">写文章</button>
       </div>
     </div>
   </div>
@@ -36,9 +34,15 @@
     <div class="myblog_lb">
       <div class="layui-carousel myblog_lb_01" id="myblog_lb_01">
         <div class="xxxx" carousel-item>
-          <div><img class="myblog_lb_01_01" src="../static/imgs/indexImgs/index_lb_1.jpg" alt=""></div>
-          <div><img class="myblog_lb_01_01" src="../static/imgs/indexImgs/index_lb_2.jpg" alt=""></div>
-          <div><img class="myblog_lb_01_01" src="../static/imgs/indexImgs/index_lb_3.jpg" alt=""></div>
+          <div>
+            <img class="myblog_lb_01_01" src="../static/imgs/indexImgs/index_lb_1.jpg" alt="" />
+          </div>
+          <div>
+            <img class="myblog_lb_01_01" src="../static/imgs/indexImgs/index_lb_2.jpg" alt="" />
+          </div>
+          <div>
+            <img class="myblog_lb_01_01" src="../static/imgs/indexImgs/index_lb_3.jpg" alt="" />
+          </div>
         </div>
       </div>
       <div>
@@ -46,52 +50,51 @@
           <li>
             <div>
               <!-- 第一层标题头像 -->
-              <div>
+              <div class="myblog_one_01">
                 <!--头像-->
-                <div class="">
-                  <img class="myblog_tx" src="../static/imgs/loginImgs/tx.jpg" alt="">
+                <div class="myblog_tx">
+                  <img class="myblog_tx_01" src="../static/imgs/loginImgs/myblog_tx.png" alt="" />
                 </div>
                 <!-- 标题 -->
-                <div>
-                  <a href=""></a>
+                <div class="myblog_bt">
+                  <a class="myblog_bt_01" href="">Java运行基础</a>
                 </div>
               </div>
               <!-- 第二层正文 -->
-              <div>
-                <div>
-                  正文
+              <div class="myblog_one_02">
+                <div class="myblog_zw">
+                  在用各种卡UN国家队饿时候注解实际数都会用到的那么他的原理
+                  是怎么演的你阿仨大神大所啊啊啊啊啊啊啊啊啊啊啊啊啊啊
+                  啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊
+                  啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊萨德
                 </div>
               </div>
               <!-- 第三层时间标签 -->
               <div>
-                <span>
-                  <i>
-                    <!-- 样式 -->
-                  </i>
+                <span class="myblog_sj">
+                  <i class="layui-icon layui-icon-date"> </i>
                   2019-09-09
                 </span>
-                <span>
-                  <i></i>
+                <span class="myblog_bq">
+                  <i class="layui-icon layui-icon-note"></i>
                   java基础
                 </span>
-                <span>
-                  <i></i>
+                <span class="myblog_ll">
+                  <i class="layui-icon layui-icon-read"></i>
                   浏览
                 </span>
-                <span>
-                  <i></i>
+                <span class="myblog_dz">
+                  <i class="layui-icon layui-icon-praise" info="333"></i>
                   点赞
                 </span>
               </div>
             </div>
-            <hr>
+            <hr />
           </li>
         </ul>
       </div>
     </div>
-
   </div>
-
 
   <script>
     layui.use(['layer', 'form', 'jquery', 'element'], function () {
@@ -107,8 +110,12 @@
         width: '100%', //设置容器宽度
         arrow: 'always', //始终显示箭头
         anim: 'fade' //切换动画方式
-      });
-    });
+      })
+    })
+    // 写文章按钮跳转地址
+    function xwz() {
+      window.location.href = "../templates/newArticle/article.html";
+    }
   </script>
 </body>
 

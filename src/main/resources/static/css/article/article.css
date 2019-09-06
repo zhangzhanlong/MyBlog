@@ -1,0 +1,80 @@
+/* 上半部分 */
+.layui_top {
+  width: 1000px;
+  height: 70px;
+  margin: 25px auto;
+  border-bottom: 1px solid #1E9FFF;
+}
+
+/* 头部整个 */
+.layui_top_01 {
+  width: 1000px;
+  height: 100px;
+}
+
+/* 导航栏 */
+.layui_top_02 {
+  font-size: 20px;
+  margin: 0 20px;
+  float: left;
+}
+
+/* input框和俩按钮 */
+.layui_top_03 {
+
+  width: 500px;
+  height: 70px;
+  display: inline-block;
+  float: left;
+}
+
+.layui_top_04 {
+  width: 300px;
+  display: inline-block;
+  float: left;
+}
+
+/* 控制按钮的距离 */
+.layui_top_05 {
+  margin-left: 270px;
+}
+
+
+/* 富文本总div */
+.wangEditor3 {
+  width: 900px;
+  margin: 0 auto;
+  margin-top: 30px;
+}
+
+/* 富文本第一个div */
+.toolbar_01 {
+  width: 900px;
+  height: 30px;
+  border: 1px solid #ccc;
+}
+
+
+/* 富文本第二个div */
+.toolbar_02 {
+  font-family: "KaiTi_GB2312";
+  font-size: 16px;
+  width: 900px;
+  border: 1px solid #ccc;
+  height: 400px;
+}
+
+/* 富文本编辑器中间的隔层 */
+.toolbar_03 {
+  padding: 5px 0;
+  color: #ccc;
+}
+
+/* 文本域 */
+.textarea_01 {
+  width: 900px;
+  font-size: 20px;
+  font-weight: bold;
+  height: 40px;
+  resize: none;
+}
