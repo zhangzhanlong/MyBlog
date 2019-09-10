@@ -12,6 +12,9 @@
 <script src="/src/main/resources/static/vue/vue.js"></script>
 <script src="/src/main/resources/static/layui/layui.all.js"></script>
 <script type="text/javascript" src="/src/main/resources/static/js/wangEditor.js"></script>
+<script src="/src/main/resources/static/js/article/article.js"></script>
+
+
 
 <body>
   <div class="layui_top">
@@ -23,8 +26,7 @@
         <li class="layui_top_02"><a href="">模块</a></li>
       </ul>
       <div class="layui-input-block layui_top_03">
-        <input class="layui-btn layui-btn-normal layui_top_05" type="button" value="搜索" />
-        <button class="layui-btn layui-btn-normal layui_top_05" onclick="javascript:xwz()">写文章</button>
+        <button class="layui-btn layui-btn-normal layui_top_05" onclick="javascript:xwz()">保存</button>
       </div>
     </div>
   </div>
@@ -44,16 +46,20 @@
     </div>
   </div>
 
+
+
+
+
+
+
+
+
+
   <!-- 注意， 只需要引用 JS，无需引用任何 CSS ！！！-->
   <script type="text/javascript">
-    var E = window.wangEditor
-    var editor1 = new E('#wangEditor3_01', '#wangEditor3_02') // 两个参数也可以传入 elem 对象，class 选择器
-    editor1.create()
+    // 其他样式在article.js里面
+    editor.create()
   </script>
-
-
-
-
   <script>
     layui.use(['layer', 'form', 'jquery', 'element'], function () {
       var layer = layui.layer,

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="zhang.myblog.zhang.dao.IndexDao">
+    <select id="queryAll" resultType="map">
+    select
+        myblog_article_id,
+        myblog_article_title,
+        myblog_article_contents,
+        myblog_article_creationtime,
+        myblog_label_id,
+        DEL_FLAG
+    from
+         myblog_article
+    where
+         DEL_FLAG=0
+    </select>
+</mapper>
