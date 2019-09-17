@@ -98,20 +98,23 @@
                         '<span class="myblog_sj"> ' +
                         '<i class="layui-icon layui-icon-date"> </i>' +res.data[i].myblogArticleCreationtime+'</span> ' +
                         '<span class="myblog_bq"> ' +
-                        '<i class="layui-icon layui-icon-note"></i>' +'java基础' + ' </span> ' +
+                        '<i class="layui-icon layui-icon-note"></i>' +res.data[i].myblogLabelName+ ' </span> ' +
                         '<span class="myblog_ll"> ' +
-                        '<i class="layui-icon layui-icon-read"></i>' +
-                        '浏览 ' +
+                        '<i class="layui-icon layui-icon-read"></i>'
+                        +res.data[i].DzOrLlCount[i].ll+
                         '</span> ' +
                         '<span class="myblog_dz"> ' +
-                        '<i class="layui-icon layui-icon-praise" info="333"></i>'
-                        +res.data[i].myblogArticleCreationtime+
+                        '<i class="layui-icon layui-icon-praise"></i>'
+                        +res.data[i].DzOrLlCount[i].dz+
                         '</span> ' +
                         '</div> ' +
                         '</div> ' +
                         '<hr /> ' +
                         '</li>');
                 }
+
+
+
             },
             error: function () {
                 layer.msg("网络异常");

@@ -23,7 +23,12 @@ public class IndexController {
      */
     @RequestMapping(value = "/selectArticle")
     public AjaxResult selectArticle() {
+        List<Map<String, Object>> DzOrLlCount=null;
         List<Map<String, Object>> ArticleList = indexService.queryAll();
+        for(Map map:ArticleList){
+            DzOrLlCount = indexService.selectDzOrLl(Integer.valueOf(String.valueOf(map.get("myblogArticleId"))));
+            map.put("DzOrLlCount",DzOrLlCount);
+        }
         return AjaxResult.success(ArticleList);
     }
 

@@ -22,4 +22,15 @@
 		         label.myblog_label_id=article.myblog_label_id
                  group by myblog_article_id
     </select>
+    <!--查询点赞数和浏览数-->
+    <select id="selectDzOrLl" resultType="map">
+        select
+            (select count(1) from myblog_dz as dz where dz.myblog_article_id =article.myblog_article_id) as dz,
+            (select count(1) from myblog_ll as ll where ll.myblog_article_id =article.myblog_article_id) as ll
+        from
+            myblog_article as article
+        where
+             myblog_article_id =#{myblogArticleId}
+
+    </select>
 </mapper>

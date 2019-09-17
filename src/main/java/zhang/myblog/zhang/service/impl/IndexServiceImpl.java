@@ -18,4 +18,9 @@ IndexDao indexDao;
     public List<Map<String, Object>> queryAll() {
         return indexDao.queryAll();
     }
+
+    @Override
+    public List<Map<String, Object>> selectDzOrLl(Integer myblogArticleId) {
+        return indexDao.selectDzOrLl(myblogArticleId);
+    }
 }
