@@ -2,16 +2,24 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="zhang.myblog.zhang.dao.IndexDao">
     <select id="queryAll" resultType="map">
-    select
-        myblog_article_id,
-        myblog_article_title,
-        myblog_article_contents,
-        myblog_article_creationtime,
-        myblog_label_id,
-        DEL_FLAG
-    from
-         myblog_article
-    where
-         DEL_FLAG=0
+         select
+                myblog_article_id,
+                myblog_article_title,
+                myblog_article_contents,
+                myblog_article_creationtime,
+				myblog_user_name,
+				myblog_user_headportrait,
+				myblog_label_name
+         from
+                 myblog_article as article,
+				 myblog_user as  user,
+				 myblog_label as label
+         where
+                 DEL_FLAG=0
+		 AND
+		         user.myblog_user_id=article.myblog_user_id
+		 AND
+		         label.myblog_label_id=article.myblog_label_id
+                 group by myblog_article_id
     </select>
 </mapper>

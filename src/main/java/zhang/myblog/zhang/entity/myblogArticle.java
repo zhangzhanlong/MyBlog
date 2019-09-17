@@ -5,18 +5,15 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
-import io.swagger.annotations.ApiModel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.experimental.Accessors;
+
 
 import java.util.Date;
 
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-@Accessors(chain = true)
-@ApiModel(value = "SysCr对象", description = "出入表")
 public class myblogArticle extends Model<myblogArticle> {
     private static final long serialVersionUID = 1L;
     //id
@@ -34,6 +31,11 @@ public class myblogArticle extends Model<myblogArticle> {
     //文章标签
     @TableField("myblog_label_id")
     private String myblogLabelId;
+
+    //用户id
+    @TableField("myblog_user_id")
+    private String myblogUserId;
+
     //是否可用
     @TableLogic
     @TableField("DEL_FLAG")

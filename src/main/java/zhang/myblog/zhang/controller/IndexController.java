@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import zhang.myblog.zhang.service.IndexService;
 import zhang.myblog.zhang.util.AjaxResult;
 
+
 import java.util.List;
 import java.util.Map;
 @Controller
@@ -25,4 +26,5 @@ public class IndexController {
         List<Map<String, Object>> ArticleList = indexService.queryAll();
         return AjaxResult.success(ArticleList);
     }
+
 }

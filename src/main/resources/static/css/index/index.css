@@ -12,6 +12,11 @@
   height: 100px;
 }
 
+/* 头部ul */
+.layui_top_02_01 {
+  margin: 0 100px;
+}
+
 /* 导航栏 */
 .layui_top_02 {
   font-size: 20px;
@@ -25,10 +30,11 @@
   height: 70px;
   display: inline-block;
   float: left;
+  margin: 0 40px;
 }
 
 .layui_top_04 {
-  width: 300px;
+  width: 200px;
   display: inline-block;
   float: left;
 }

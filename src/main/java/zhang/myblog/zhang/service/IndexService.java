@@ -8,4 +8,5 @@ import java.util.Map;
 
 public interface IndexService extends IService<myblogArticle> {
     List<Map<String, Object>> queryAll();
+
 }
