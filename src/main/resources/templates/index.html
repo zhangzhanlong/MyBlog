@@ -11,7 +11,8 @@
 </head>
 <script src="../static/vue/vue.js"></script>
 <script src="../static/layui/layui.all.js"></script>
-<style></style>
+<style>
+</style>
 
 <body>
   <div class="layui_top">
@@ -50,7 +51,6 @@
       <div>
         <!--正文-->
         <ul class="myblog_zw_01">
-
         </ul>
       </div>
     </div>
@@ -86,7 +86,7 @@
                         '</div> ' +
                         '<!-- 标题 --> ' +
                         '<div class="myblog_bt"> ' +
-                        '<a class="myblog_bt_01" href="">'+res.data[i].myblogArticleTitle+'</a> ' +
+                        '<a class="myblog_bt_01" href="../static/newArticle/lokeBlog.html?myblogArticleId='+res.data[i].myblogArticleId+'">'+res.data[i].myblogArticleTitle+'</a> ' +
                         '</div> ' +
                         '</div> ' +
                         '<!-- 第二层正文 --> ' +
@@ -101,11 +101,11 @@
                         '<i class="layui-icon layui-icon-note"></i>' +res.data[i].myblogLabelName+ ' </span> ' +
                         '<span class="myblog_ll"> ' +
                         '<i class="layui-icon layui-icon-read"></i>'
-                        +res.data[i].DzOrLlCount[i].ll+
+                        +res.data[i].DzOrLlCount[0].ll+
                         '</span> ' +
                         '<span class="myblog_dz"> ' +
                         '<i class="layui-icon layui-icon-praise"></i>'
-                        +res.data[i].DzOrLlCount[i].dz+
+                        +res.data[i].DzOrLlCount[0].dz+
                         '</span> ' +
                         '</div> ' +
                         '</div> ' +
@@ -120,20 +120,6 @@
                 layer.msg("网络异常");
             }
         });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     })
     // 写文章按钮跳转地址
     function xwz() {

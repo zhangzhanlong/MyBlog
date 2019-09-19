@@ -26,7 +26,7 @@
         <li class="layui_top_02"><a href="">模块</a></li>
       </ul>
       <div class="layui-input-block layui_top_03">
-        <button class="layui-btn layui-btn-normal layui_top_05" onclick="javascript:xwz()">保存</button>
+        <button class="layui-btn layui-btn-normal layui_top_05">保存</button>
       </div>
     </div>
   </div>
@@ -38,23 +38,14 @@
       <!-- 两个div之间的距离 -->
     </div>
     <div>
+        <!--标题-->
       <textarea autofocus placeholder="输入标题..." cols="10" spellcheck="false" maxlength="80" rows="1"
         class="textarea_01"></textarea>
     </div>
-    <div id="wangEditor3_02" class="toolbar_02">
-      <!-- 正文 -->
-    </div>
+        <!--正文-->
+    <div id="wangEditor3_02" class="toolbar_02"></div>
+
   </div>
-
-
-
-
-
-
-
-
-
-
   <!-- 注意， 只需要引用 JS，无需引用任何 CSS ！！！-->
   <script type="text/javascript">
     // 其他样式在article.js里面
@@ -75,6 +66,31 @@
         arrow: 'always', //始终显示箭头
         anim: 'fade' //切换动画方式
       })
+        $('body').on('click', '.layui_top_05', function (res) {
+            var title=$(".textarea_01").val();
+            var contents=$(".w-e-text").text();
+            var contentshtml=$(".w-e-text").html();
+            console.log(contents)
+            $.ajax({
+                url: '/index/addArticle',
+                type: 'post',
+                dataType: 'json',
+                data: {
+                    myblogArticleTitle:title,
+                    myblogArticleContents:contents,
+                    myblogArticleContentshtml:contentshtml
+                },
+                success: function (res) {
+                    layer.msg(res.msg);
+                    window.location.href = '/'
+                },
+                error: function () {
+                    layer.msg("网络异常");
+                }
+            });
+
+        });
+
     })
   </script>
 </body>

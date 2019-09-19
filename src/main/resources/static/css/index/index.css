@@ -88,19 +88,23 @@
 /* 正文 */
 .myblog_one_02 {
   margin: 0px 0px 0px 5px;
-  width: 500px;
+  width: 700px;
   height: 30px;
 }
 
 /* 正文 */
-.myblog_zw {
-  font-size: 15px;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  width: 700px;
-}
 
+.myblog_zw {
+     font-size: 15px;
+     overflow: hidden;
+     width: 700px;
+     height:18px;
+ }
+.myblog_zw p{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow:ellipsis;
+}
 /* 时间日期 */
 .myblog_sj {}
 
