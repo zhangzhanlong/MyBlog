@@ -8,4 +8,5 @@ import java.util.Map;
 
 public interface IndexhtmlService extends IService<myblogArticleHtml> {
 
+    List<Map<String, Object>> queryArticle(Integer myblogArticleId);
 }

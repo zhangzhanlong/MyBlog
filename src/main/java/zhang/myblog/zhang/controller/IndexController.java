@@ -13,10 +13,12 @@ import zhang.myblog.zhang.dao.IndexhtmlDao;
 import zhang.myblog.zhang.entity.myblogArticle;
 import zhang.myblog.zhang.entity.myblogArticleHtml;
 import zhang.myblog.zhang.service.IndexService;
+import zhang.myblog.zhang.service.IndexhtmlService;
 import zhang.myblog.zhang.util.AjaxResult;
 
 import java.util.List;
 import java.util.Map;
+
 @Controller
 @ResponseBody
 @RequestMapping("/index")
@@ -27,30 +29,35 @@ public class IndexController {
     IndexDao indexDao;
     @Autowired
     IndexhtmlDao indexhtmlDao;
+    @Autowired
+    IndexhtmlService indexhtmlService;
+
     /**
      * 查询全部文章
+     *
      * @return
      */
     @RequestMapping(value = "/selectArticle")
     public AjaxResult selectArticle() {
-        List<Map<String, Object>> DzOrLlCount=null;
+        List<Map<String, Object>> DzOrLlCount = null;
         List<Map<String, Object>> ArticleList = indexService.queryAll();
-        for(Map map:ArticleList){
+        for (Map map : ArticleList) {
             DzOrLlCount = indexService.selectDzOrLl(Integer.valueOf(String.valueOf(map.get("myblogArticleId"))));
-            map.put("DzOrLlCount",DzOrLlCount);
+            map.put("DzOrLlCount", DzOrLlCount);
         }
         return AjaxResult.success(ArticleList);
     }
+
     /**
-     *新建文章
+     * 新建文章
      */
     @RequestMapping(value = "/addArticle")
-    public AjaxResult addArticle(String myblogArticleTitle,String myblogArticleContents,String myblogArticleContentshtml) {
+    public AjaxResult addArticle(String myblogArticleTitle, String myblogArticleContents, String myblogArticleContentshtml) {
         //不带样式
-        myblogArticle myblogArticle=new myblogArticle();
+        myblogArticle myblogArticle = new myblogArticle();
         //带html样式
-        myblogArticleHtml myblogArticleHtml=new myblogArticleHtml();
-        if(StringUtils.isNotBlank(myblogArticleTitle)&&StringUtils.isNotBlank(myblogArticleContents)){
+        myblogArticleHtml myblogArticleHtml = new myblogArticleHtml();
+        if (StringUtils.isNotBlank(myblogArticleTitle) && StringUtils.isNotBlank(myblogArticleContents)) {
             //文章标题
             myblogArticle.setMyblogArticleTitle(myblogArticleTitle);
             myblogArticleHtml.setMyblogArticleTitle(myblogArticleTitle);
@@ -75,11 +82,24 @@ public class IndexController {
             } catch (Exception e) {
                 return AjaxResult.fail("失败");
             }
-        }else{
+        } else {
             return AjaxResult.fail("标题或内容不能为空");
         }
-
         return AjaxResult.success("成功");
     }
+
+    /**
+     * 查看文章
+     */
+    @RequestMapping(value = "/queryArticle")
+    public AjaxResult queryArticle(Integer myblogArticleId) {
+        List<Map<String, Object>> list = null;
+        if (myblogArticleId != null) {
+            list = indexhtmlService.queryArticle(myblogArticleId);
+        }
+        return AjaxResult.success(list);
+
+    }
+
 
 }

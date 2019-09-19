@@ -15,5 +15,10 @@ import java.util.Map;
 
 @Service
 public class IndexhtmlServiceImpl extends ServiceImpl<IndexhtmlDao, myblogArticleHtml> implements IndexhtmlService {
-
+   @Autowired
+    IndexhtmlDao indexhtmlDao;
+    @Override
+    public List<Map<String, Object>> queryArticle(Integer myblogArticleId) {
+        return indexhtmlDao.queryArticle(myblogArticleId);
+    }
 }
