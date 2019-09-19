@@ -8,13 +8,12 @@ import com.baomidou.mybatisplus.extension.activerecord.Model;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-
 import java.util.Date;
 
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class myblogArticle extends Model<myblogArticle> {
+public class myblogArticleHtml extends Model<myblogArticleHtml> {
     private static final long serialVersionUID = 1L;
     //id
     @TableId(value = "myblog_article_id", type = IdType.AUTO)

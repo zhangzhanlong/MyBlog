@@ -15,7 +15,6 @@
     <description>Demo project for Spring Boot</description>
     <!--项目产生的构件类型，例如jar、war、ear、pom-->
     <packaging>jar</packaging>
-    <!--  <packaging>war</packaging>-->
       <properties>
           <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
           <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
