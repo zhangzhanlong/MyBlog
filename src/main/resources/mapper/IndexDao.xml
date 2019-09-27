@@ -20,7 +20,12 @@
 		         user.myblog_user_id=article.myblog_user_id
 		 AND
 		         label.myblog_label_id=article.myblog_label_id
-                 group by myblog_article_id
+     <if test="myblogArticleTitle!=null and myblogArticleTitle!=''">
+         and
+         myblog_article_title like concat('%',#{myblogArticleTitle},'%')
+     </if>
+
+        group by myblog_article_id desc
     </select>
     <!--查询点赞数和浏览数-->
     <select id="selectDzOrLl" resultType="map">
@@ -31,6 +36,9 @@
             myblog_article as article
         where
              myblog_article_id =#{myblogArticleId}
-
     </select>
+<!--存储过程删除文章信息-->
+    <update id="deleteArticle">
+        call deleteArticle(#{myblogArticleId})
+    </update>
 </mapper>

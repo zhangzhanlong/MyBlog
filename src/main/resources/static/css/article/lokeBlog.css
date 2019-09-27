@@ -19,6 +19,11 @@
   margin: 0 20px;
   float: left;
 }
+/* input框和俩按钮 */
+.layui_top_03 {
+    float: left;
+    margin-left:425px;
+}
 .loke_top_bt{
     font-size: 25px;
 }
@@ -50,4 +55,18 @@
 /*正文*/
 .loke_zw{
     margin:12px 10px;
+}
+/*结尾文字提示*/
+.jwwz{
+    margin:50px 40px;
+}
+/*正文结束撑开空间*/
+.footer{
+    height:1px;
+}
+/*底部备案信息*/
+.footer_01 {
+    width: 200px;
+    height: 50px;
+    margin: 100px auto;
 }

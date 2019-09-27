@@ -35,7 +35,7 @@ editor.customConfig.pasteIgnoreImg = false
 // 自定义处理粘贴的文本内容
 editor.customConfig.pasteTextHandle = function (content) {
   // content 即粘贴过来的内容（html 或 纯文本），可进行自定义处理然后返回
-  return content + '<p>在粘贴内容后面追加一行</p>'
+  return content + '<p class="jwwz">如有其他问题请联系作者QQ：16075085</p>'
 }
 //插入网络图片
 editor.customConfig.linkImgCallback = function (url) {
@@ -79,10 +79,6 @@ editor.customConfig.showLinkImg = true
 editor.customConfig.uploadImgShowBase64 = true // 使用 base64 保存图片
 // 配置上传图片服务器端地址
 //editor.customConfig.uploadImgServer = '/upload'
-// 进行下文提到的其他配置
-// ……
-// ……
-// ……
 
 // 将图片大小限制为 3M
 editor.customConfig.uploadImgMaxSize = 3 * 1024 * 1024

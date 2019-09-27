@@ -95,16 +95,18 @@
 /* 正文 */
 
 .myblog_zw {
-     font-size: 15px;
-     overflow: hidden;
-     width: 700px;
-     height:18px;
- }
-.myblog_zw p{
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow:ellipsis;
+  font-size: 15px;
+  overflow: hidden;
+  width: 700px;
+  height: 18px;
 }
+
+.myblog_zw p {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
 /* 时间日期 */
 .myblog_sj {}
 
@@ -122,4 +124,12 @@
 .myblog_dz {
   float: right;
   margin: 0 20px;
+}
+
+/*底部备案信息*/
+.footer_01 {
+  width: 200px;
+  height: 50px;
+  margin: 100px auto;
+
 }

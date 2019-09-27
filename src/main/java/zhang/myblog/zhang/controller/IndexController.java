@@ -1,6 +1,7 @@
 package zhang.myblog.zhang.controller;
 
 import cn.hutool.core.date.DateUtil;
+import com.sun.javafx.collections.MappingChange;
 import org.apache.commons.lang.StringUtils;
 import org.apache.poi.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import zhang.myblog.zhang.service.IndexService;
 import zhang.myblog.zhang.service.IndexhtmlService;
 import zhang.myblog.zhang.util.AjaxResult;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -38,9 +40,13 @@ public class IndexController {
      * @return
      */
     @RequestMapping(value = "/selectArticle")
-    public AjaxResult selectArticle() {
+    public AjaxResult selectArticle(String myblogArticleTitle) {
+        Map<String, Object> param = new HashMap<String, Object>();
         List<Map<String, Object>> DzOrLlCount = null;
-        List<Map<String, Object>> ArticleList = indexService.queryAll();
+        if (StringUtils.isNotBlank(myblogArticleTitle)) {
+            param.put("myblogArticleTitle", myblogArticleTitle);
+        }
+        List<Map<String, Object>> ArticleList = indexService.queryAll(param);
         for (Map map : ArticleList) {
             DzOrLlCount = indexService.selectDzOrLl(Integer.valueOf(String.valueOf(map.get("myblogArticleId"))));
             map.put("DzOrLlCount", DzOrLlCount);
@@ -49,43 +55,56 @@ public class IndexController {
     }
 
     /**
-     * 新建文章
+     * 新建文章or更新文章
      */
-    @RequestMapping(value = "/addArticle")
-    public AjaxResult addArticle(String myblogArticleTitle, String myblogArticleContents, String myblogArticleContentshtml) {
+    @RequestMapping(value = "/AddOrUpdateArticleor")
+    public AjaxResult AddOrUpdateArticleor(Integer myblogArticleId,String myblogArticleTitle, String myblogArticleContents, String myblogArticleContentshtml) {
         //不带样式
         myblogArticle myblogArticle = new myblogArticle();
         //带html样式
         myblogArticleHtml myblogArticleHtml = new myblogArticleHtml();
-        if (StringUtils.isNotBlank(myblogArticleTitle) && StringUtils.isNotBlank(myblogArticleContents)) {
-            //文章标题
-            myblogArticle.setMyblogArticleTitle(myblogArticleTitle);
-            myblogArticleHtml.setMyblogArticleTitle(myblogArticleTitle);
-            //文章内容
-            myblogArticle.setMyblogArticleContents(myblogArticleContents);
-            myblogArticleHtml.setMyblogArticleContents(myblogArticleContentshtml);
-            //创建时间
-            myblogArticle.setMyblogArticleCreationtime(DateUtil.date());
-            myblogArticleHtml.setMyblogArticleCreationtime(DateUtil.date());
-            //标签id
-            myblogArticle.setMyblogLabelId(1);
-            myblogArticleHtml.setMyblogLabelId(1);
-            //用户id
-            myblogArticle.setMyblogUserId(1);
-            myblogArticleHtml.setMyblogUserId(1);
+           if (StringUtils.isNotBlank(myblogArticleTitle) && StringUtils.isNotBlank(myblogArticleContents)) {
+               //文章标题
+               myblogArticle.setMyblogArticleTitle(myblogArticleTitle);
+               myblogArticleHtml.setMyblogArticleTitle(myblogArticleTitle);
+               //文章内容
+               myblogArticle.setMyblogArticleContents(myblogArticleContents);
+               myblogArticleHtml.setMyblogArticleContents(myblogArticleContentshtml);
 
-            myblogArticle.setDelFlag(0);
-            myblogArticleHtml.setDelFlag(0);
-            try {
-                indexDao.insert(myblogArticle);
-                indexhtmlDao.insert(myblogArticleHtml);
-            } catch (Exception e) {
-                return AjaxResult.fail("失败");
-            }
-        } else {
-            return AjaxResult.fail("标题或内容不能为空");
-        }
-        return AjaxResult.success("成功");
+               //标签id
+               myblogArticle.setMyblogLabelId(1);
+               myblogArticleHtml.setMyblogLabelId(1);
+               //用户id
+               myblogArticle.setMyblogUserId(1);
+               myblogArticleHtml.setMyblogUserId(1);
+
+               myblogArticle.setDelFlag(0);
+               myblogArticleHtml.setDelFlag(0);
+
+               if(myblogArticleId==null){
+                   try {
+                       //创建时间
+                       myblogArticle.setMyblogArticleCreationtime(DateUtil.date());
+                       myblogArticleHtml.setMyblogArticleCreationtime(DateUtil.date());
+                       indexDao.insert(myblogArticle);
+                       indexhtmlDao.insert(myblogArticleHtml);
+                   } catch (Exception e) {
+                       return AjaxResult.fail("失败");
+                   }
+               }else{
+                   myblogArticle.setMyblogArticleId(myblogArticleId);
+                   myblogArticleHtml.setMyblogArticleId(myblogArticleId);
+                   try {
+                       indexDao.updateById(myblogArticle);
+                       indexhtmlDao.updateById(myblogArticleHtml);
+                   } catch (Exception e) {
+                       return AjaxResult.fail("失败");
+                   }
+               }
+           } else {
+               return AjaxResult.fail("标题或内容不能为空");
+           }
+           return AjaxResult.success("成功");
     }
 
     /**
@@ -94,12 +113,23 @@ public class IndexController {
     @RequestMapping(value = "/queryArticle")
     public AjaxResult queryArticle(Integer myblogArticleId) {
         List<Map<String, Object>> list = null;
+
         if (myblogArticleId != null) {
             list = indexhtmlService.queryArticle(myblogArticleId);
         }
         return AjaxResult.success(list);
 
     }
-
-
+    /**
+     * 删除文章
+     */
+    @RequestMapping(value = "/deleteArticle")
+    public AjaxResult deleteArticle(Integer myblogArticleId) {
+        if (myblogArticleId!=null) {
+            indexService.deleteArticle(myblogArticleId);
+        }else{
+            return AjaxResult.fail("参数异常");
+        }
+        return AjaxResult.success("删除成功");
+    }
 }

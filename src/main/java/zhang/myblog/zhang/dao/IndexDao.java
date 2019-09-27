@@ -11,7 +11,9 @@ import java.util.Map;
 @Mapper
 @Repository
 public interface IndexDao extends BaseMapper<myblogArticle> {
-    List<Map<String, Object>> queryAll();
+    List<Map<String, Object>> queryAll(Map<String, Object> param);
 
     List<Map<String, Object>> selectDzOrLl(Integer myblogArticleId);
+
+    void deleteArticle(Integer myblogArticleId);
 }

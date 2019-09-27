@@ -66,6 +66,9 @@
   border: 1px solid #ccc;
   height: 700px;
 }
+.toolbar_02 img{
+    width: 100%;
+}
 
 /* 富文本编辑器中间的隔层 */
 
@@ -77,4 +80,12 @@
   font-weight: bold;
   height: 40px;
   resize: none;
+}
+
+/*底部备案信息*/
+.footer_01 {
+    width: 200px;
+    height: 50px;
+    margin: 100px auto;
+
 }

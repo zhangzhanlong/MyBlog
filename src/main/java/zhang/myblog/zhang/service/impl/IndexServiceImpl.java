@@ -15,12 +15,17 @@ public class IndexServiceImpl extends ServiceImpl<IndexDao, myblogArticle> imple
 @Autowired
 IndexDao indexDao;
     @Override
-    public List<Map<String, Object>> queryAll() {
-        return indexDao.queryAll();
+    public List<Map<String, Object>> queryAll(Map<String, Object> param) {
+        return indexDao.queryAll(param);
     }
 
     @Override
     public List<Map<String, Object>> selectDzOrLl(Integer myblogArticleId) {
         return indexDao.selectDzOrLl(myblogArticleId);
+    }
+
+    @Override
+    public void deleteArticle(Integer myblogArticleId) {
+       indexDao.deleteArticle(myblogArticleId);
     }
 }

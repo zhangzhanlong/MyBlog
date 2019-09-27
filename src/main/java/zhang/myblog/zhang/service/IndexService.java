@@ -7,7 +7,9 @@ import java.util.List;
 import java.util.Map;
 
 public interface IndexService extends IService<myblogArticle> {
-    List<Map<String, Object>> queryAll();
+    List<Map<String, Object>> queryAll(Map<String, Object> param);
 
     List<Map<String, Object>> selectDzOrLl(Integer myblogArticleId);
+
+    void deleteArticle(Integer myblogArticleId);
 }
