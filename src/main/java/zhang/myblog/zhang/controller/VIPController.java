@@ -2,16 +2,11 @@ package zhang.myblog.zhang.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-public class DefaultView {
-    @RequestMapping("/")
-    public String index() {
-        return "index";
-    }
-
-    public static void main(String[] args) {
-
-    }
+@ResponseBody
+@RequestMapping("/VIP")
+public class VIPController {
 
 }

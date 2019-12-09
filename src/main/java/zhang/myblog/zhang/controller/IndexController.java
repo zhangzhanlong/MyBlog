@@ -48,7 +48,10 @@ public class IndexController {
         }
         List<Map<String, Object>> ArticleList = indexService.queryAll(param);
         for (Map map : ArticleList) {
-            DzOrLlCount = indexService.selectDzOrLl(Integer.valueOf(String.valueOf(map.get("myblogArticleId"))));
+            if(map.get("myblogArticleId")!=null){
+                DzOrLlCount = indexService.selectDzOrLl(Integer.valueOf(String.valueOf(map.get("myblogArticleId"))));
+            }
+
             map.put("DzOrLlCount", DzOrLlCount);
         }
         return AjaxResult.success(ArticleList);
