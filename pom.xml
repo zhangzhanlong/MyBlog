@@ -195,18 +195,6 @@
             <artifactId>commons-lang3</artifactId>
             <version>3.8.1</version>
         </dependency>
-
-
-
-
-
-
-
-
-
-
-
-
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus</artifactId>
@@ -274,7 +262,7 @@
             <artifactId>swagger-bootstrap-ui</artifactId>
             <version>1.9.0</version>
         </dependency>
-
+        <!--七牛对象储存-->
         <dependency>
             <groupId>com.qiniu</groupId>
             <artifactId>qiniu-java-sdk</artifactId>
@@ -314,10 +302,6 @@
             <version>5.1.8.RELEASE</version>
             <scope>compile</scope>
         </dependency>
-
-
-
-
         <!--easypoi -->
         <dependency>
             <groupId>cn.afterturn</groupId>
@@ -341,23 +325,6 @@
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
-        </dependency>
-        <!-- oracle驱动 -->
-        <dependency>
-            <groupId>com.oracle</groupId>
-            <artifactId>ojdbc6</artifactId>
-            <version>${oracle.version}</version>
-        </dependency>
-        <!-- mssql驱动 -->
-        <dependency>
-            <groupId>com.microsoft.sqlserver</groupId>
-            <artifactId>sqljdbc4</artifactId>
-            <version>${mssql.version}</version>
-        </dependency>
-        <!-- postgresql驱动 -->
-        <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
         </dependency>
 
     </dependencies>
