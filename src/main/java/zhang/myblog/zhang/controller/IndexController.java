@@ -1,13 +1,21 @@
 package zhang.myblog.zhang.controller;
 
+import cn.afterturn.easypoi.excel.ExcelImportUtil;
+import cn.afterturn.easypoi.excel.entity.ImportParams;
+import cn.afterturn.easypoi.exception.excel.ExcelImportException;
 import cn.hutool.core.date.DateUtil;
 import com.sun.javafx.collections.MappingChange;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang.StringUtils;
 import org.apache.poi.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import zhang.myblog.MyblogApplication;
 import zhang.myblog.zhang.dao.IndexDao;
 import zhang.myblog.zhang.dao.IndexhtmlDao;
@@ -16,10 +24,14 @@ import zhang.myblog.zhang.entity.myblogArticleHtml;
 import zhang.myblog.zhang.service.IndexService;
 import zhang.myblog.zhang.service.IndexhtmlService;
 import zhang.myblog.zhang.util.AjaxResult;
+import zhang.myblog.zhang.util.EasyPoiUtil;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.*;
+
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @Controller
 @ResponseBody
@@ -132,4 +144,136 @@ public class IndexController {
         }
         return AjaxResult.success("删除成功");
     }
+/*
+    *//**
+     * 设为离职|批量设为离职
+     *//*
+
+    @ApiOperation(value = "通讯录组织架构设为离职", notes = "通讯录组织架构设为离职")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "ids", value = "ids", required = true),
+    })
+    @RequestMapping(value = "/leave", method = POST, produces = "application/json")
+    @ResponseBody
+    public AjaxResult leave (@RequestParam(name = "ids", required = true) String ids) {
+        if(ids==null&&ids.equals("")){
+            return AjaxResult.success("参数异常");
+        }
+        String id[] = ids.split(",");
+
+        ArrayList<Integer> a = new ArrayList<Integer>(id.length);
+        try {
+            for (String pid : id) {
+                a.add(Integer.valueOf(pid));
+            }
+
+            djUserService.leave(a);
+
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            return AjaxResult.fail("参数异常");
+        }
+        return AjaxResult.success("ok");
+    }
+
+    *//**
+     * 导出
+     *//*
+    @ApiOperation(value = "通讯录组织架构导出", notes = "通讯录组织架构导出")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "ids", value = "id数据", required = true),
+    })
+    @RequestMapping(value = "/exportExcle", method =GET, produces = "application/json")
+    @ResponseBody
+    public AjaxResult exportExcle(String ids, HttpServletResponse response) {
+        List<Map<String, Object>> export = null;
+        if (null != ids && !ids.equals("")) {
+            String id[] = ids.split(",");
+            ArrayList<Integer> b = new ArrayList<Integer>(id.length);
+
+            for (String pid : id) {
+                b.add(Integer.valueOf(pid));
+            }
+            export = djUserService.export(b);
+        }
+        if (null == ids || ids.equals("")) {
+            return null;
+        }
+        Map<String, String> title = new LinkedHashMap<>();
+        title.put("姓名", "userName");
+        title.put("帐号", "userZh");
+        title.put("性别", "userSex");
+        title.put("部门", "deptName");
+        title.put("手机号", "userSjh");
+        title.put("邮箱", "userEmail");
+        title.put("微信号", "userEx");
+        title.put("员工生日", "userSr");
+        title.put("入职日期", "userRzrq");
+
+        EasyPoiUtil.DownloadExcel(response, "员工信息表", export, title);
+
+        return AjaxResult.success("导出成功");
+
+
+    }
+
+    *//**
+     * 导入
+     *//*
+    @ApiOperation(value = "通讯录组织架构导入", notes = "通讯录组织架构导入")
+    @RequestMapping(value = "/importExcel", method = POST, produces = "application/json")
+    @ResponseBody
+    public AjaxResult importExcel(MultipartFile file) {
+        ImportParams params = new ImportParams();
+        DjUser djUser = new DjUser();
+        String[] title = {"姓名", "帐号", "性别", "部门", "手机号码", "邮箱", "微信号", "员工生日", "入职日期"};
+        params.setTitleRows(0);
+        params.setHeadRows(1);
+        params.setReadSingleCell(true);
+        params.setImportFields(title);
+        List<Map<String, Object>> maps = new ArrayList<Map<String, Object>>();
+        try {
+            maps = ExcelImportUtil.importExcel(file.getInputStream(), Map.class, params);
+        } catch (ExcelImportException e) {
+            e.printStackTrace();
+            return AjaxResult.fail(e.getMessage());
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (maps.size() != 0) {
+            for (Map<String, Object> map : maps) {
+                if( map.get("姓名")!=null&&!map.get("姓名").equals("")){
+                    String userName = map.get("姓名").toString();
+                    if (userName != null && !userName.equals("")) {
+                        djUser.setUserName(userName);
+                    }
+                }else{
+                    return AjaxResult.fail("第" + (maps.indexOf(map) + 1) + "行,姓名不能为空");
+                }
+                if( map.get("帐号")!=null&&!map.get("帐号").equals("")){
+                    String userZh = map.get("帐号").toString();
+                    DjUser zh=djUserDao.selectOne(new QueryWrapper<DjUser>().eq("user_zh",userZh));
+                    if(zh!=null){
+                        return AjaxResult.fail("该帐号已存在");
+                    }
+                    if (userZh != null && !userZh.equals("")) {
+                        djUser.setUserZh(userZh);
+                    }
+                }else{
+                    return AjaxResult.fail("第" + (maps.indexOf(map) + 1) + "行,帐号不能为空");
+                }
+                djUserService.add(djUser);
+            }
+            return AjaxResult.success("添加成功");
+        } else {
+            return AjaxResult.fail("添加的数据为空");
+        }
+    }*/
+
+
+
+
+
 }
