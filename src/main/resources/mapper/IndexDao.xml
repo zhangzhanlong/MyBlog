@@ -2,50 +2,43 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="zhang.myblog.zhang.dao.IndexDao">
     <select id="queryAll" resultType="map">
-         select
-                myblog_article_id,
-                myblog_article_title,
-                myblog_article_contents,
-                myblog_article_creationtime,
-				myblog_user_name,
-				myblog_user_headportrait,
-				myblog_label_name
-         from
-                 myblog_article as article,
-				 myblog_user as  user,
-				 myblog_label as label
-         where
-                 DEL_FLAG=0
-		 AND
-		         user.myblog_user_id=article.myblog_user_id
-		 AND
-		         label.myblog_label_id=article.myblog_label_id
-     <if test="myblogArticleTitle!=null and myblogArticleTitle!=''">
-         and
-         myblog_article_title like concat('%',#{myblogArticleTitle},'%')
-     </if>
+        select
+        myblog_article_id,
+        myblog_article_title,
+        myblog_article_contents,
+        myblog_article_creationtime,
+        myblog_user_name,
+        myblog_user_headportrait,
+        myblog_label_name
+        from
+        myblog_article as article,
+        myblog_user as user,
+        myblog_label as label
+        where
+        DEL_FLAG=0
+        AND
+        user.myblog_user_id=article.myblog_user_id
+        AND
+        label.myblog_label_id=article.myblog_label_id
+        <if test="myblogArticleTitle!=null and myblogArticleTitle!=''">
+            and
+            myblog_article_title like concat('%',#{myblogArticleTitle},'%')
+        </if>
 
-        group by myblog_article_id desc
+        order by myblog_article_id desc
     </select>
     <!--查询点赞数和浏览数-->
     <select id="selectDzOrLl" resultType="map">
         select
-            (select count(1) from myblog_dz as dz where dz.myblog_article_id =article.myblog_article_id) as dz,
-            (select count(1) from myblog_ll as ll where ll.myblog_article_id =article.myblog_article_id) as ll
+        (select count(1) from myblog_dz as dz where dz.myblog_article_id =article.myblog_article_id) as dz,
+        (select count(1) from myblog_ll as ll where ll.myblog_article_id =article.myblog_article_id) as ll
         from
-            myblog_article as article
+        myblog_article as article
         where
-             myblog_article_id =#{myblogArticleId}
+        myblog_article_id =#{myblogArticleId}
     </select>
-<!--存储过程删除文章信息-->
+    <!--存储过程删除文章信息-->
     <update id="deleteArticle">
         call deleteArticle(#{myblogArticleId})
-    </update>
-    <!--设为离职-->
-    <update id="leave" parameterType="java.util.List">
-        update dj_user set del_flag= 2 where dj_user_id in
-        <foreach collection="list" item="id" open="(" separator="," close=")">
-            #{id}
-        </foreach>
     </update>
 </mapper>

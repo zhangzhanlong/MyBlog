@@ -12,8 +12,9 @@ import java.util.Map;
 
 @Service
 public class IndexServiceImpl extends ServiceImpl<IndexDao, myblogArticle> implements IndexService {
-@Autowired
-IndexDao indexDao;
+    @Autowired
+    IndexDao indexDao;
+
     @Override
     public List<Map<String, Object>> queryAll(Map<String, Object> param) {
         return indexDao.queryAll(param);
@@ -26,6 +27,6 @@ IndexDao indexDao;
 
     @Override
     public void deleteArticle(Integer myblogArticleId) {
-       indexDao.deleteArticle(myblogArticleId);
+        indexDao.deleteArticle(myblogArticleId);
     }
 }

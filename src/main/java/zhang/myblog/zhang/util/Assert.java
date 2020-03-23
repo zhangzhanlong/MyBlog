@@ -5,7 +5,8 @@ import org.apache.commons.lang.StringUtils;
 
 /**
  * Created with IDEA
- *数据校验
+ * 数据校验
+ *
  * @author xp
  * @date 2019/2/21 10:47
  */
@@ -19,6 +20,7 @@ public abstract class Assert {
             throw new RRException(message);
         }
     }
+
     public static void isNull(Object object, String message) {
         /**
          *对象为null

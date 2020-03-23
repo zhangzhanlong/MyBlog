@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="zhang.myblog.zhang.dao.IndexhtmlDao">
-   <select id="queryArticle" resultType="map">
-    select
-    myblog_article_id,
-    myblog_article_title,
-    myblog_article_contents,
-    myblog_article_creationtime,
-    myblog_user_name,
-    myblog_user_headportrait,
-    myblog_label_name
-    from
-    myblog_article_html as articlehtml,
-    myblog_user as  user,
-    myblog_label as label
-    where
-    DEL_FLAG=0
-    and
-    myblog_article_id=#{myblogArticleId}
-    and
-    user.myblog_user_id=articlehtml.myblog_user_id
-    and
-    label.myblog_label_id=articlehtml.myblog_label_id
-</select>
+    <select id="queryArticle" resultType="map">
+        select
+        myblog_article_id,
+        myblog_article_title,
+        myblog_article_contents,
+        myblog_article_creationtime,
+        myblog_user_name,
+        myblog_user_headportrait,
+        myblog_label_name
+        from
+        myblog_article_html as articlehtml,
+        myblog_user as user,
+        myblog_label as label
+        where
+        DEL_FLAG=0
+        and
+        myblog_article_id=#{myblogArticleId}
+        and
+        user.myblog_user_id=articlehtml.myblog_user_id
+        and
+        label.myblog_label_id=articlehtml.myblog_label_id
+    </select>
 
 </mapper>

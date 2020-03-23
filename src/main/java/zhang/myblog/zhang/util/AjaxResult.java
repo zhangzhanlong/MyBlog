@@ -4,8 +4,8 @@ import io.swagger.annotations.ApiModel;
 
 import java.io.Serializable;
 
-@ApiModel(value="返回说明")
-public class AjaxResult<T> implements Serializable{
+@ApiModel(value = "返回说明")
+public class AjaxResult<T> implements Serializable {
 
 
     /**
@@ -13,7 +13,7 @@ public class AjaxResult<T> implements Serializable{
      */
     private static final long serialVersionUID = 4404203832037984839L;
 
-    private Integer  code;
+    private Integer code;
 
     private boolean success;
 
@@ -22,12 +22,12 @@ public class AjaxResult<T> implements Serializable{
     private Object data;
 
 
-    public AjaxResult(){
+    public AjaxResult() {
 
     }
 
-    public AjaxResult(Integer code,boolean success, String msg, Object data){
-        this.code=code;
+    public AjaxResult(Integer code, boolean success, String msg, Object data) {
+        this.code = code;
         this.success = success;
         this.msg = msg;
         this.data = data;
@@ -66,25 +66,25 @@ public class AjaxResult<T> implements Serializable{
         return this;
     }
 
-    public static AjaxResult success(Object data){
-        return new AjaxResult(200,true, null, data);
+    public static AjaxResult success(Object data) {
+        return new AjaxResult(200, true, null, data);
     }
 
-    public static AjaxResult success(Object data, String msg){
-        return new AjaxResult(200,true, msg, data);
+    public static AjaxResult success(Object data, String msg) {
+        return new AjaxResult(200, true, msg, data);
     }
 
-    public static AjaxResult success(String msg){
-        return new AjaxResult(200,true, msg, null);
+    public static AjaxResult success(String msg) {
+        return new AjaxResult(200, true, msg, null);
     }
 
-    public static AjaxResult fail(String msg){
+    public static AjaxResult fail(String msg) {
 
-        return new AjaxResult(200,false, msg, null);
+        return new AjaxResult(200, false, msg, null);
     }
 
-    public static AjaxResult failLocation(Object data, String msg){
-        return new AjaxResult(200,false, msg, data);
+    public static AjaxResult failLocation(Object data, String msg) {
+        return new AjaxResult(200, false, msg, data);
     }
 
 

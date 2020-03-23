@@ -10,7 +10,7 @@ import io.swagger.annotations.ApiModelProperty;
  */
 public class Rest<T> {
     @ApiModelProperty(value = "是否成功")
-    private boolean success=true;
+    private boolean success = true;
     @ApiModelProperty(value = "错误编号")
     private Integer code;
     @ApiModelProperty(value = "错误信息")
