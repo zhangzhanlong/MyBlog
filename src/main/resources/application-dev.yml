@@ -34,27 +34,16 @@ spring:
             multi-statement-allow: true
   thymeleaf:
     cache: false
-    prefix: classpath:/templates/
+    prefix: classpath:/templates/html/
     suffix: .html
     encoding: UTF-8
     mode: HTML5
+    # 服务模块
+  devtools:
+    restart:
+      # 热部署开关
+      enabled: true
   mvc:
     static-path-pattern: /static/**
+
     throw-exception-if-no-handler-found: true
-
-##多数据源的配置
-#dynamic:
-#  datasource:
-#    slave1:
-#      driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
-#      url: jdbc:sqlserver://localhost:1433;DatabaseName=renren_security
-#      username: sa
-#      password: 123456
-#    slave2:
-#      driver-class-name: org.postgresql.Driver
-#      url: jdbc:postgresql://localhost:5432/renren_security
-#      username: renren
-#      password: 123456
-
-
-

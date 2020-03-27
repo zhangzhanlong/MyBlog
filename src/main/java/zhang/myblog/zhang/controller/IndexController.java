@@ -4,14 +4,18 @@ import cn.afterturn.easypoi.excel.ExcelImportUtil;
 import cn.afterturn.easypoi.excel.entity.ImportParams;
 import cn.afterturn.easypoi.exception.excel.ExcelImportException;
 import cn.hutool.core.date.DateUtil;
+import cn.hutool.json.JSONObject;
 import com.sun.javafx.collections.MappingChange;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.poi.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -25,8 +29,11 @@ import zhang.myblog.zhang.service.IndexService;
 import zhang.myblog.zhang.service.IndexhtmlService;
 import zhang.myblog.zhang.util.AjaxResult;
 import zhang.myblog.zhang.util.EasyPoiUtil;
+import zhang.myblog.zhang.util.FileInfo;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
@@ -45,6 +52,35 @@ public class IndexController {
     IndexhtmlDao indexhtmlDao;
     @Autowired
     IndexhtmlService indexhtmlService;
+    /**
+     * 上传图片
+     * @param request
+     * @param response
+     * @param file
+     */
+    /**
+     * 在配置文件中配置的文件保存路径
+     */
+    @Value("${img.location}")
+    private String folder;
+
+    @PostMapping("/file")
+    public FileInfo upload(HttpServletRequest request, @RequestParam(value = "editormd-image-file", required = false) MultipartFile file) throws Exception {
+        System.err.println(file);
+
+        try {
+            String fileName = file.getOriginalFilename();
+            String suffix = fileName.substring(fileName.lastIndexOf(".") + 1);
+            String newFileName = new Date().getTime() + "." + suffix;
+
+            File localFile = new File(folder, newFileName);
+            file.transferTo(localFile);
+            return new FileInfo(1, "上传成功", request.getRequestURL().substring(0,request.getRequestURL().lastIndexOf("/"))+"/upload/"+newFileName);
+        } catch (Exception e) {
+            return new  FileInfo(0,"失败","");
+        }
+    }
+
 
     /**
      * 查询全部文章
