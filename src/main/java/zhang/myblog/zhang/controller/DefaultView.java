@@ -23,6 +23,8 @@ public class DefaultView {
         return "index";
     }
 
+
+
     /**
      * 查看博客
      * @param myblogArticleId

@@ -15,10 +15,7 @@ import org.apache.poi.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import zhang.myblog.MyblogApplication;
 import zhang.myblog.zhang.dao.IndexDao;
@@ -32,13 +29,10 @@ import zhang.myblog.zhang.util.EasyPoiUtil;
 import zhang.myblog.zhang.util.FileInfo;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.File;
-import java.io.IOException;
+
 import java.util.*;
 
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @Controller
 @ResponseBody
@@ -64,10 +58,11 @@ public class IndexController {
     @Value("${img.location}")
     private String folder;
 
+
     @PostMapping("/file")
     public FileInfo upload(HttpServletRequest request, @RequestParam(value = "editormd-image-file", required = false) MultipartFile file) throws Exception {
         System.err.println(file);
-
+        System.err.println(request.getParameter("fileimg"));
         try {
             String fileName = file.getOriginalFilename();
             String suffix = fileName.substring(fileName.lastIndexOf(".") + 1);
