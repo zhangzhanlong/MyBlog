@@ -369,7 +369,13 @@
             type: 'post',
             dataType: 'json',
             success: function (res) {
-                for (var i = 0; i < 5; i++) {
+
+           if(res.data.length<=5){
+               var number=res.data.length;
+           }else {
+               var number=5;
+           }
+                for (var i = 0; i < number; i++) {
                     var a = $('.myblog_zw_zd_01').append(
                         ' <li>'+
                         <!--头像-->

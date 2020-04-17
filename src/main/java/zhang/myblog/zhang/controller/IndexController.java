@@ -41,6 +41,7 @@ public class IndexController {
 
             map.put("DzOrLlCount", DzOrLlCount);
         }
+        System.err.println(ArticleList);
         return AjaxResult.success(ArticleList);
     }
 
@@ -64,6 +65,7 @@ public class IndexController {
 
             map.put("DzOrLlCount", DzOrLlCount);
         }
+
         return AjaxResult.success(ArticleList);
     }
 

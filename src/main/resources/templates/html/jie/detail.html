@@ -372,11 +372,11 @@
             type: 'post',
             dataType: 'json',
             success: function (res) {
-                $(document).attr("title", res.data[0].myblogArticleTitle);
-                $(".bt").html(res.data[0].myblogArticleTitle);//标题
-                $(".sj").html(res.data[0].myblogArticleCreationtime);//时间
-                $(".bq").html(res.data[0].myblogLabelName);//标签
-                $(".zw").html(res.data[0].myblogArticleContents);//正文
+                $(document).attr("title", res.data.myblogArticleTitle);
+                $(".bt").html(res.data.myblogArticleTitle);//标题
+                $(".sj").html(res.data.myblogArticleCreationtime);//时间
+                $(".bq").html(res.data.myblogLabelName);//标签
+                $(".zw").html(res.data.myblogArticleContents);//正文
             },
             error: function () {
                 layer.msg("网络异常");

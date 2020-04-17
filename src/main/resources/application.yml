@@ -5,7 +5,7 @@ server:
     max-threads: 1000
     min-spare-threads: 30
     max-http-post-size: -1
-  port: 8001
+  port: 80
   connection-timeout: 50000ms
   servlet:
     context-path: / #项目路径
