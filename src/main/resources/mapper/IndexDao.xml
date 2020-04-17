@@ -1,11 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="zhang.myblog.zhang.dao.IndexDao">
+    <resultMap id="myBlogArticleResult" type="myblogArticle">
+        <result property="myblogArticleId" column="myblog_article_id"/>
+        <result property="myblogArticleTitle" column="myblog_article_title"/>
+        <result property="myblogArticleContents" column="myblog_article_contents"/>
+        <result property="myblogArticleContentsMarkdown" column="myblog_article_contents_markdown"/>
+        <result property="myblogArticleCreationtime" column="myblog_article_creationtime"/>
+        <result property="myblogLabelId" column="myblog_label_id"/>
+        <result property="myblogUserId" column="myblog_user_id"/>
+        <result property="delFlag" column="DEL_FLAG"/>
+        <result property="myblogArticleStick" column="myblog_article_stick"/>
+        <result property="myblogUserName" column="myblogUser_name"/>
+        <result property="myblogUserHeadportrait" column="myblog_user_headportrait"/>
+        <result property="myblogLabelName" column="myblog_label_name"/>
+
+    </resultMap>
+    <!--查询置顶-->
+    <select id="queryAllZd" resultType="map">
+        select
+        myblog_article_id,
+        myblog_article_title,
+        myblog_article_contents,
+        myblog_article_contents_markdown,
+        myblog_article_creationtime,
+        myblog_user_name,
+        myblog_user_headportrait,
+        myblog_label_name
+        from
+        myblog_article as article,
+        myblog_user as user,
+        myblog_label as label
+        where
+        DEL_FLAG=0
+        and myblog_article_stick=0
+        AND
+        user.myblog_user_id=article.myblog_user_id
+        AND
+        label.myblog_label_id=article.myblog_label_id
+
+        <if test="myblogArticleTitle!=null and myblogArticleTitle!=''">
+            and
+            myblog_article_title like concat('%',#{myblogArticleTitle},'%')
+        </if>
+
+        order by myblog_article_id desc
+    </select>
+    <!--查询全部-->
     <select id="queryAll" resultType="map">
         select
         myblog_article_id,
         myblog_article_title,
         myblog_article_contents,
+        myblog_article_contents_markdown,
         myblog_article_creationtime,
         myblog_user_name,
         myblog_user_headportrait,
@@ -26,6 +73,29 @@
         </if>
 
         order by myblog_article_id desc
+    </select>
+    <select id="queryArticle" parameterType="integer" resultMap="myBlogArticleResult">
+        select
+        myblog_article_id,
+        myblog_article_title,
+        myblog_article_contents,
+        myblog_article_contents_markdown,
+        myblog_article_creationtime,
+        myblog_user_name,
+        myblog_user_headportrait,
+        myblog_label_name
+        from
+        myblog_article as articlehtml,
+        myblog_user as user,
+        myblog_label as label
+        where
+        DEL_FLAG=0
+        and
+        myblog_article_id=#{myblogArticleId}
+        and
+        user.myblog_user_id=articlehtml.myblog_user_id
+        and
+        label.myblog_label_id=articlehtml.myblog_label_id
     </select>
     <!--查询点赞数和浏览数-->
     <select id="selectDzOrLl" resultType="map">

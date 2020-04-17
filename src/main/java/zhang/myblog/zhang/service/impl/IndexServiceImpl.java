@@ -16,6 +16,11 @@ public class IndexServiceImpl extends ServiceImpl<IndexDao, myblogArticle> imple
     IndexDao indexDao;
 
     @Override
+    public List<Map<String, Object>> queryAllZd(Map<String, Object> param) {
+        return indexDao.queryAllZd(param);
+    }
+
+    @Override
     public List<Map<String, Object>> queryAll(Map<String, Object> param) {
         return indexDao.queryAll(param);
     }
@@ -28,5 +33,10 @@ public class IndexServiceImpl extends ServiceImpl<IndexDao, myblogArticle> imple
     @Override
     public void deleteArticle(Integer myblogArticleId) {
         indexDao.deleteArticle(myblogArticleId);
+    }
+
+    @Override
+    public myblogArticle queryArticle(Integer myblogArticleId) {
+        return indexDao.queryArticle(myblogArticleId);
     }
 }

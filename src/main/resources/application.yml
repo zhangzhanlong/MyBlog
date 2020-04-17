@@ -21,7 +21,7 @@ spring:
     multipart:
       max-file-size: 10240MB
       max-request-size: 10240MB
-      enabled: false
+      enabled: true
   redis:
     open: false  # 是否开启redis缓存  true开启   false关闭
     database: 0
