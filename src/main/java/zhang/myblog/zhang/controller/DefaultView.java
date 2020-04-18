@@ -94,13 +94,13 @@ public class DefaultView {
      * 编辑博客
      * @return
      */
-    @GetMapping("/add/{myblogArticleId}")
+    @GetMapping("/modification/{myblogArticleId}")
     public String add(@PathVariable("myblogArticleId") int myblogArticleId, ModelMap modelMap) {
         modelMap.put("myblogArticleId",myblogArticleId);
         myblogArticle list = indexService.queryArticle(myblogArticleId);
 
         modelMap.put("list",list);
-        return "jie/add";
+        return "jie/modification";
     }
 
 

@@ -2,7 +2,7 @@
 <html lang="zh" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
-    <title>写文章—MyBlog</title>
+    <title>更新—MyBlog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="keywords" content="博客,个人博客,张占龙博客">
     <meta name="description" content="个人博客，自己编写">
@@ -84,7 +84,8 @@
                 <div class="layui-form layui-tab-content" id="LAY_ucm" style="padding: 20px 0;">
                     <div class="layui-tab-item layui-show">
                         <!--form-->
-                        <div action="" method="post">
+                        <div action="" method="post" th:object="${list}">
+                            <input name="myblogArticleId" th:field="*{myblogArticleId}" type="hidden">
                             <div class="layui-row layui-col-space15 layui-form-item">
                                 <div class="layui-col-md3">
                                     <label class="layui-form-label">所在专栏</label>
@@ -104,7 +105,7 @@
                                     <!--标题模块-->
                                     <label for="myblog_title" class="layui-form-label">标题</label>
                                     <div class="layui-input-block">
-                                        <input type="text" id="myblog_title" name="title"  autocomplete="off"
+                                        <input type="text" id="myblog_title" name="title" th:field="*{myblogArticleTitle}" autocomplete="off"
                                                class="layui-input" />
                                         <!-- <input type="hidden" name="id" value="{{d.edit.id}}"> -->
                                     </div>
@@ -142,7 +143,7 @@
                             <div class="layui-form-item layui-form-text">
                                 <div class="layui-input-block" id="test-editormd">
                                     <!--正文模板-->
-                                    <textarea id="textContent" name="textContent"></textarea>
+                                    <textarea id="textContent" name="textContent" th:field="*{myblogArticleContentsMarkdown}"></textarea>
 
                                     <textarea id="myblog_content_html" class="editormd-html-textarea"
                                               name="myblog_content_html"></textarea>

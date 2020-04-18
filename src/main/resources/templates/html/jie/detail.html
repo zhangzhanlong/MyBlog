@@ -366,7 +366,7 @@
             element = layui.element,
             carousel = layui.carousel
         /*赋值给编辑此贴a标签*/
-        $("#updateMyblog").attr("href","/add/"+myblogArticleId);
+        $("#updateMyblog").attr("href","/modification/"+myblogArticleId);
         $.ajax({
             url: '/index/queryArticle?myblogArticleId=' + myblogArticleId,
             type: 'post',
